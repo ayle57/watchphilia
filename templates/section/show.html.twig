@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Section n°{{ section.id }}{% endblock %}
+
+{% block body %}
+    <div class="container bg-light rounded mt-2 p-4">
+        <div class="item mb-4">
+            <h4>{{ section.name }}</h4>
+            {% if section.exactPrice %}
+                <div>
+                    Prix: {{ section.exactPrice }}
+                </div>
+            {% elseif section.minPrice and section.maxPrice %}
+                <div>
+                    Prix minimal: {{ section.minPrice }}
+                </div>
+                <div>
+                    Prix maximal: {{ section.maxPrice }}
+                </div>
+            {% else %}
+                <p>Aucun prix renseigné</p>
+            {% endif %}
+            <ul>
+                {% for watch in watches %}
+                    <li>
+                        <a href="{{ path('watch.show', {'id': watch.id}) }}">{{ watch.name }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+            <a href="{{ path('section.index') }}" class="btn btn-primary">Retourner aux sections</a>
+        </div>
+    </div>
+{% endblock %}

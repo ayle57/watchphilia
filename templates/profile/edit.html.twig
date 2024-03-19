@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Édition du profil{% endblock %}
+
+{% block body %}
+
+    <div class="container mt-2 bg-light rounded p-4">
+        <h2>Édition du profil</h2>
+        {{ form_start(profileEditForm) }}
+            {% if form_errors(profileEditForm) %}
+                <div class="alert alert-danger">
+                    {% for error in form_errors(profileEditForm) %}
+                        <li>{{ error.message }}</li>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            {{ form_row(profileEditForm.username) }}
+            {{ form_row(profileEditForm.email) }}
+            {{ form_row(profileEditForm.password) }}
+            <button type="submit" class="btn btn-primary mt-2">Editer</button>
+        {{ form_end(profileEditForm) }}
+    </div>
+{% endblock %}

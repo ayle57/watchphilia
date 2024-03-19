@@ -1,0 +1,30 @@
+
+<div class="fake-header" style="height: 97px"></div>
+<header class="p-3 text-bg-light position-fixed w-100 top-0">
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <a href="{{ path('index.home') }}" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                <img src="{{ asset('images/logo.png') }}" alt="Logo de watchphilia" width="65">
+            </a>
+
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <li><a href="{{ path('index.home') }}" class="nav-link px-2 {% if app.current_route starts with 'index.home' %}text-primary{% else %}text-black{% endif %}">Home</a></li>
+                <li><a href="{{ path('watch.index') }}" class="nav-link px-2 {% if app.current_route starts with 'watch.' %}text-primary{% else %}text-black{% endif %}">Montres</a></li>
+                <li><a href="{{ path('section.index') }}" class="nav-link px-2 {% if app.current_route starts with 'section.' %}text-primary{% else %}text-black{% endif %}">Sections</a></li>
+            </ul>
+
+            <div class="text-end">
+                {% if app.user and not is_granted('ROLE_ADMIN') %}
+                    <a href="{{ path('profile.index') }}" class="btn btn-outline-dark me-2">Mon Profil</a>
+                    <a href="{{ path('auth.logout') }}" class="btn btn-primary">Deconnexion</a>
+                {% elseif app.user and is_granted('ROLE_ADMIN') %}
+                    <a href="{{ path('auth.logout') }}" class="btn btn-outline-primary">Deconnexion</a>
+                    <a href="{{ path('admin.index') }}" class="btn btn-primary">Dashboard</a>
+                {% else %}
+                    <a href="{{ path('auth.login') }}" class="btn btn-outline-dark me-2">Connexion</a>
+                    <a href="{{ path('auth.register') }}" class="btn btn-primary">Inscription</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</header>

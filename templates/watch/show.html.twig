@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Montres n°{{ watch.id }}{% endblock %}
+
+{% block body %}
+    <div class="container bg-light rounded mt-2 p-4">
+        <div class="item mb-4">
+            <img src="{{ watch.imageUrl }}" alt="" class="rounded">
+            <h4>{{ watch.name }}</h4>
+            <small>{{ watch.price }}€</small>
+            <p>{{ watch.description }}</p>
+            <ul>
+                <li>Section: {{ watch.section.name }}</li>
+                <li>Sous-Section: {{ watch.subsection.name }}</li>
+                <li>Propriétés: {% for property in watch.properties %}{{ property.name }}, {% endfor %}</li>
+            </ul>
+            <a href="{{ path('watch.index') }}" class="btn btn-primary">Retourner aux montres</a>
+        </div>
+    </div>
+{% endblock %}

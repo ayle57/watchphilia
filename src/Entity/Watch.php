@@ -26,6 +26,7 @@ class Watch
     private ?float $price = null;
 
     #[ORM\ManyToMany(targetEntity: Property::class, inversedBy: 'watches')]
+    #[ORM\JoinColumn(nullable: false)]
     private Collection $properties;
 
     #[ORM\ManyToOne(inversedBy: 'watches')]
@@ -33,7 +34,11 @@ class Watch
     private ?SubSection $subsection = null;
 
     #[ORM\ManyToOne(inversedBy: 'watches')]
+    #[ORM\JoinColumn(nullable: false)]
     private ?Section $section = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $image_url = null;
 
     public function __construct()
     {
@@ -125,6 +130,18 @@ class Watch
     public function setSection(?Section $section): static
     {
         $this->section = $section;
+
+        return $this;
+    }
+
+    public function getImageUrl(): ?string
+    {
+        return $this->image_url;
+    }
+
+    public function setImageUrl(?string $image_url): static
+    {
+        $this->image_url = $image_url;
 
         return $this;
     }

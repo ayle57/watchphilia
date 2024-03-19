@@ -21,20 +21,17 @@ class WatchRepository extends ServiceEntityRepository
         parent::__construct($registry, Watch::class);
     }
 
-    //    /**
-    //     * @return Watch[] Returns an array of Watch objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('w')
-    //            ->andWhere('w.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('w.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
+    /**
+     * @return Watch[] Returns an array of Watch objects
+     */
+    public function findByNumber($number = 3): array
+    {
+        return $this->createQueryBuilder('w')
+            ->orderBy('w.id', 'ASC')
+            ->setMaxResults($number)
+            ->getQuery()
+            ->getResult();
+    }
 
     //    public function findOneBySomeField($value): ?Watch
     //    {
