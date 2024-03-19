@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Montres{% endblock %}
+
+{% block body %}
+    <div class="container rounded mt-2 p-4 d-flex align-items-center flex-column">
+        {% for watch in watches %}
+        <div class="item mb-4">
+            <img src="{{ watch.imageUrl }}" alt="" class="rounded">
+            <h4>{{ watch.name }}</h4>
+            <p>{{ watch.description | slice(0, 100) }}</p>
+            <a href="{{ path('watch.show', {'id': watch.id})}}" class="btn btn-outline-primary">En savoir plus</a>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}

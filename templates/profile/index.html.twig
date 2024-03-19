@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profil{% endblock %}
+
+{% block body %}
+    <div class="container mt-2 bg-light rounded p-4">
+        <h2>Profil de {{ app.user.username | capitalize }}</h2>
+        <p>Email: {{ app.user.email }}</p>
+        <p>Role: {% for role in app.user.roles %}{{ role }} {% endfor %}</p>
+        <a href="{{ path('profile.edit', {id: app.user.id}) }}" class="link text-primary px-2">Editer mon profil</a>
+        <a href="{{ path('profile.delete', {id: app.user.id}) }}" class="link text-danger">Supprimer mon profil</a>
+    </div>
+{% endblock %}
